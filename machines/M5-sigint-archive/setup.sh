@@ -61,9 +61,9 @@ systemctl restart nfs-kernel-server
 systemctl enable nfs-kernel-server
 
 # SSH config (password auth enabled for archivist)
-sed -i 's/^#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
-sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
-systemctl restart sshd && systemctl enable sshd
+sed -i 's/^#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/ssh_config
+sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/ssh_config
+systemctl restart ssh && systemctl enable ssh
 
 echo "========================================" >> /root/ctf_setup_log.txt
 echo "M5 (sigint-archive) Flag (FINAL): $FLAG" >> /root/ctf_setup_log.txt
