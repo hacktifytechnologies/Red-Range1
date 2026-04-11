@@ -1,4 +1,5 @@
 - name: 'DESERT WIRE: Setup M3 sigint-gateway sudo node Misconfiguration'
+  id: dw03c4d5e6f7a8b9c0d1e2f3a4b5c6d7
   description: >-
     Configures M3 (sigint-gateway) as the pivot host between DMZ and private
     subnet. Creates the sigops user with SSH key-only authentication. Deploys
@@ -14,41 +15,39 @@
   repeatable: false
   delete_payload: false
   executors:
-  - name: sh
-    platform: linux
-    command: >-
-      echo "[RED] Setting up M3 sigint-gateway sudo misconfiguration";
-      id sigops 2>/dev/null || useradd -m -s /bin/bash sigops;
-      mkdir -p /home/sigops/.ssh;
-      chmod 700 /home/sigops/.ssh;
-      touch /home/sigops/.ssh/authorized_keys;
-      chmod 600 /home/sigops/.ssh/authorized_keys;
-      chown -R sigops:sigops /home/sigops/.ssh;
-      mkdir -p /etc/sudoers.d;
-      echo "sigops ALL=(ALL) NOPASSWD: /usr/bin/node" > /etc/sudoers.d/desert-wire-gateway;
-      chmod 440 /etc/sudoers.d/desert-wire-gateway;
-      mkdir -p /opt/gateway;
-      printf '{"role":"signals-gateway","downstream_services":{"sigint_processor":{"port":5000,"auth_token":"DSRT-SIG-4a7f2c91","note":"Rotate Q1 2025"}}}
-' > /opt/gateway/config.json;
-      chmod 600 /opt/gateway/config.json;
-      FLAG="FLAG{sudo_node_pivot_achieved}";
-      echo "$FLAG" > /root/flag3.txt;
-      chmod 600 /root/flag3.txt;
-      sed -i 's/^PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/ssh_config 2>/dev/null || true;
-      echo "PasswordAuthentication no" >> /etc/ssh/ssh_config;
-      systemctl restart ssh;
-      echo "[RED] M3 deployed. sudo node rule active.";
-      echo "[RED] Flag: $FLAG";
-      echo "[RED] ACTION: Copy M2 pubkey to /home/sigops/.ssh/authorized_keys"
-    code: null
-    language: null
-    build_target: null
-    payloads: []
-    uploads: []
-    timeout: 120
-    parsers: []
-    cleanup: []
-    variations: []
-    additional_info: {}
+    - name: sh
+      platform: linux
+      command: |
+        echo "[RED] Setting up M3 sigint-gateway sudo misconfiguration"
+        id sigops 2>/dev/null || useradd -m -s /bin/bash sigops
+        mkdir -p /home/sigops/.ssh
+        chmod 700 /home/sigops/.ssh
+        touch /home/sigops/.ssh/authorized_keys
+        chmod 600 /home/sigops/.ssh/authorized_keys
+        chown -R sigops:sigops /home/sigops/.ssh
+        mkdir -p /etc/sudoers.d
+        echo "sigops ALL=(ALL) NOPASSWD: /usr/bin/node" > /etc/sudoers.d/desert-wire-gateway
+        chmod 440 /etc/sudoers.d/desert-wire-gateway
+        mkdir -p /opt/gateway
+        printf '{"role":"signals-gateway","downstream_services":{"sigint_processor":{"port":5000,"auth_token":"DSRT-SIG-4a7f2c91","note":"Rotate Q1 2025"}}}\n' > /opt/gateway/config.json
+        chmod 600 /opt/gateway/config.json
+        FLAG="FLAG{sudo_node_pivot_achieved}"
+        echo "$FLAG" > /root/flag3.txt
+        chmod 600 /root/flag3.txt
+        sed -i 's/^PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/ssh_config 2>/dev/null || true
+        echo "PasswordAuthentication no" >> /etc/ssh/ssh_config
+        systemctl restart ssh
+        echo "[RED] M3 deployed. sudo node rule active."
+        echo "[RED] Flag: $FLAG"
+        echo "[RED] ACTION: Copy M2 pubkey to /home/sigops/.ssh/authorized_keys"
+      code: null
+      language: null
+      build_target: null
+      payloads: []
+      uploads: []
+      timeout: 120
+      parsers: []
+      cleanup: []
+      variations: []
+      additional_info: {}
   requirements: []
-  id: dw03c4d5e6f7a8b9c0d1e2f3a4b5c6d7
