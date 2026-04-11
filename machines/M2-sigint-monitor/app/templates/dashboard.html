@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="dash-wrap">
+  <nav class="sidebar">
+    <div class="sb-grp">
+      <div class="sb-hdr">NAVIGATION</div>
+      <a class="sb-link" href="#" onclick="show('nodes')">◈ COLLECTION NODES</a>
+      <a class="sb-link" href="#" onclick="show('diagnostic')">◈ DIAGNOSTICS</a>
+      <a class="sb-link" href="#" onclick="show('sigint')">◈ SIGINT PIPELINE</a>
+      <a class="sb-link" href="#" onclick="show('reports')">◈ REPORTS</a>
+    </div>
+    <div class="sb-grp">
+      <div class="sb-hdr">NODE SUMMARY</div>
+      <div class="sb-stat"><span>ACTIVE</span><span class="grn">4</span></div>
+      <div class="sb-stat"><span>DEGRADED</span><span class="amb">1</span></div>
+      <div class="sb-stat"><span>OFFLINE</span><span class="red">1</span></div>
+    </div>
+    <div class="sb-grp">
+      <div class="sb-hdr">OPERATOR</div>
+      <div class="sb-info">{{ session.name }}</div>
+      <div class="sb-info">{{ session.role|upper }}</div>
+      <div class="sb-info">SESSION ACTIVE</div>
+    </div>
+  </nav>
+  <main class="main-content">
+
+    <div id="panel-nodes" class="panel active">
+      <div class="ph"><h1>COLLECTION NODE STATUS</h1><span class="ps">AUTO-REFRESH: 60s</span></div>
+      <table class="tbl">
+        <thead><tr><th>NODE ID</th><th>DESIGNATION</th><th>COLLECTION TYPE</th><th>STATUS</th><th>SIGNAL (dBm)</th><th>LAST INTERCEPT</th></tr></thead>
+        <tbody>
+        {% for n in nodes %}
+        <tr>
+          <td class="mono">{{ n.id }}</td>
+          <td>{{ n.name }}</td>
+          <td><span class="tag">{{ n.type }}</span></td>
+          <td><span class="bdg bdg-{{ n.status|lower }}">{{ n.status }}</span></td>
+          <td class="mono">{{ n.signal_db }}</td>
+          <td class="dim">{{ n.last_hit }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div id="panel-diagnostic" class="panel">
+      <div class="ph"><h1>NETWORK DIAGNOSTICS</h1><span class="ps">OPERATOR TOOLS</span></div>
+      <div class="warn-box">⚠ Diagnostic tools for troubleshooting collection node connectivity. Results are logged.</div>
+      <div class="tool-card">
+        <h3>NODE REACHABILITY CHECK</h3>
+        <p class="tool-desc">Verify ICMP reachability to a collection node or relay host.</p>
+        <div class="frow"><label>TARGET HOST / IP</label><input type="text" id="ping-host" placeholder="e.g. 10.10.5.22 or col-a1.kestrel.mil"></div>
+        <button class="btn-amber" onclick="runPing()">▶ RUN PING DIAGNOSTIC</button>
+      </div>
+      <div id="ping-result" class="result-box" style="display:none">
+        <div class="rb-hdr"><span>DIAGNOSTIC OUTPUT</span><span id="rb-badge"></span></div>
+        <pre id="rb-out"></pre>
+      </div>
+    </div>
+
+    <div id="panel-sigint" class="panel">
+      <div class="ph"><h1>SIGINT COLLECTION PIPELINE</h1></div>
+      <div class="info-grid">
+        <div class="ig-box"><div class="ig-v">847</div><div class="ig-k">INTERCEPTS TODAY</div></div>
+        <div class="ig-box"><div class="ig-v">23</div><div class="ig-k">ACTIVE TARGETS</div></div>
+        <div class="ig-box"><div class="ig-v">4</div><div class="ig-k">PRIORITY SELECTORS</div></div>
+        <div class="ig-box"><div class="ig-v">2.4 TB</div><div class="ig-k">COLLECTION VOLUME</div></div>
+      </div>
+      <p class="note-txt">⚠ Full pipeline access requires SIGINT analyst clearance. Contact COMSEC for access provisioning.</p>
+    </div>
+
+    <div id="panel-reports" class="panel">
+      <div class="ph"><h1>DAILY SIGINT REPORTS</h1></div>
+      <p class="note-txt">Report access restricted to cleared analysts. Pending access requests for this workstation.</p>
+    </div>
+
+  </main>
+</div>
+<script>
+function show(p) {
+  document.querySelectorAll('.panel').forEach(e=>e.classList.remove('active'));
+  document.querySelectorAll('.sb-link').forEach(e=>e.classList.remove('active'));
+  document.getElementById('panel-'+p).classList.add('active');
+}
+async function runPing() {
+  const host = document.getElementById('ping-host').value.trim();
+  const res  = document.getElementById('ping-result');
+  const out  = document.getElementById('rb-out');
+  const badge= document.getElementById('rb-badge');
+  if (!host) return;
+  res.style.display='block'; out.textContent='RUNNING...'; badge.textContent='';
+  try {
+    const r = await fetch('/api/diagnostic/ping', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({host})
+    });
+    const d = await r.json();
+    badge.textContent = d.rc===0 ? 'REACHABLE' : 'UNREACHABLE';
+    badge.style.color = d.rc===0 ? '#4ade80' : '#ef4444';
+    out.textContent = (d.stdout||'') + (d.stderr||'') + (d.error||'');
+  } catch(e) { out.textContent = 'Error: '+e.message; }
+}
+</script>
+{% endblock %}

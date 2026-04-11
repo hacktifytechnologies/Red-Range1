@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DESERT WIRE // SIGINT RELAY DASHBOARD</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+
+<!-- Classification Banner -->
+<div class="class-banner top">TOP SECRET // SIGINT // NOFORN // EXERCISE</div>
+
+<header class="hdr">
+  <div class="hdr-left">
+    <div class="hdr-logo">
+      <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
+        <circle cx="19" cy="19" r="17" stroke="#4ade80" stroke-width="1.5"/>
+        <circle cx="19" cy="19" r="10" stroke="#4ade80" stroke-width="1"/>
+        <circle cx="19" cy="19" r="3" fill="#4ade80"/>
+        <line x1="19" y1="2" x2="19" y2="9" stroke="#4ade80" stroke-width="1.5"/>
+        <line x1="36" y1="19" x2="29" y2="19" stroke="#4ade80" stroke-width="1.5"/>
+        <line x1="19" y1="36" x2="19" y2="29" stroke="#4ade80" stroke-width="1.5"/>
+        <line x1="2" y1="19" x2="9" y2="19" stroke="#4ade80" stroke-width="1.5"/>
+      </svg>
+      <div class="hdr-title">
+        <span class="title-main">DESERT WIRE</span>
+        <span class="title-sub">SIGINT COMMUNICATIONS RELAY // FOB KESTREL</span>
+      </div>
+    </div>
+  </div>
+  <div class="hdr-right">
+    <div class="sys-time" id="sys-time">--:--:-- UTC</div>
+    <div class="threat-indicator" id="threat-level">THREATCON: <span class="threat-val">BRAVO</span></div>
+    <div id="auth-panel">
+      <button class="btn-sec" onclick="showLogin()">AUTHENTICATE</button>
+    </div>
+  </div>
+</header>
+
+<div class="main-grid">
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <div class="sb-section">
+      <div class="sb-label">NAVIGATION</div>
+      <a class="sb-link active" href="#" onclick="showPanel('overview')">◈ OVERVIEW</a>
+      <a class="sb-link" href="#" onclick="showPanel('relays')">◈ RELAY STATUS</a>
+      <a class="sb-link" href="#" onclick="showPanel('frequencies')">◈ FREQUENCIES</a>
+      <a class="sb-link" href="#" onclick="showPanel('uplink')">◈ UPLINK CHECKER</a>
+      <a class="sb-link" href="#" onclick="showPanel('logs')">◈ SYSTEM LOGS</a>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">SYSTEM STATUS</div>
+      <div class="sb-stat"><span>UPLINK</span><span class="green">ACTIVE</span></div>
+      <div class="sb-stat"><span>CRYPTO</span><span class="green">SYNC</span></div>
+      <div class="sb-stat"><span>MONITOR</span><span class="amber">DEGRADED</span></div>
+      <div class="sb-stat"><span>ARCHIVE</span><span class="green">ONLINE</span></div>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">OPERATION</div>
+      <div class="sb-info">DESERT WIRE</div>
+      <div class="sb-info">FOB KESTREL</div>
+      <div class="sb-info">GRID: 37T MF 123 456</div>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main class="content">
+
+    <!-- Overview Panel -->
+    <div id="panel-overview" class="panel active">
+      <div class="panel-header">
+        <h1>RELAY SYSTEM OVERVIEW</h1>
+        <span class="panel-stamp">AUTO-REFRESH: 30s</span>
+      </div>
+      <div class="stat-row">
+        <div class="stat-box green-border"><div class="stat-val">3</div><div class="stat-lbl">RELAYS NOMINAL</div></div>
+        <div class="stat-box amber-border"><div class="stat-val">1</div><div class="stat-lbl">DEGRADED</div></div>
+        <div class="stat-box red-border"><div class="stat-val">1</div><div class="stat-lbl">OFFLINE</div></div>
+        <div class="stat-box"><div class="stat-val">5</div><div class="stat-lbl">TOTAL RELAYS</div></div>
+      </div>
+      <div class="section-title">ACTIVE COLLECTION NODES</div>
+      <table class="data-table" id="relay-table">
+        <thead><tr><th>NODE ID</th><th>DESIGNATION</th><th>FREQUENCY</th><th>STATUS</th><th>UPTIME</th><th>LAST SYNC</th></tr></thead>
+        <tbody id="relay-tbody"><tr><td colspan="6" class="loading">LOADING...</td></tr></tbody>
+      </table>
+    </div>
+
+    <!-- Relay Status Panel -->
+    <div id="panel-relays" class="panel">
+      <div class="panel-header"><h1>RELAY STATUS</h1></div>
+      <div id="relay-cards" class="relay-cards"></div>
+    </div>
+
+    <!-- Frequencies Panel -->
+    <div id="panel-frequencies" class="panel">
+      <div class="panel-header"><h1>FREQUENCY ALLOCATION</h1></div>
+      <div class="info-block">
+        <div class="ib-row"><span class="ib-k">PRIMARY BAND</span><span class="ib-v">X-Band (8–12 GHz)</span></div>
+        <div class="ib-row"><span class="ib-k">BACKUP BAND</span><span class="ib-v">C-Band (4–8 GHz)</span></div>
+        <div class="ib-row"><span class="ib-k">ENCRYPTION</span><span class="ib-v">AES-256-GCM / KG-175D</span></div>
+        <div class="ib-row"><span class="ib-k">WAVEFORM</span><span class="ib-v">MILSATCOM (AEHF)</span></div>
+      </div>
+    </div>
+
+    <!-- SSRF Vulnerable Panel -->
+    <div id="panel-uplink" class="panel">
+      <div class="panel-header">
+        <h1>SATELLITE UPLINK CHECKER</h1>
+        <span class="panel-stamp">DIAGNOSTIC UTILITY v2.1</span>
+      </div>
+      <div class="warn-box">
+        ⚠ This tool verifies reachability of designated SATCOM uplink endpoints.
+        Intended for use by authorized relay operators. All checks are logged.
+      </div>
+      <div class="form-card">
+        <div class="form-row">
+          <label>TARGET ENDPOINT URL</label>
+          <input type="text" id="uplink-url" placeholder="https://satcom-endpoint.mil/uplink/health" spellcheck="false">
+        </div>
+        <div class="form-row">
+          <label>CHECK PROTOCOL</label>
+          <select id="uplink-proto">
+            <option>HTTP Health Check</option>
+            <option>HTTPS Verify</option>
+            <option>API Status Poll</option>
+          </select>
+        </div>
+        <button class="btn-gold" onclick="checkUplink()">▶ RUN UPLINK CHECK</button>
+      </div>
+      <div id="uplink-result" class="result-block" style="display:none">
+        <div class="rb-header"><span class="rb-title">CHECK RESULT</span><span id="rb-status"></span></div>
+        <pre id="rb-body"></pre>
+      </div>
+    </div>
+
+    <!-- Logs Panel -->
+    <div id="panel-logs" class="panel">
+      <div class="panel-header"><h1>SYSTEM LOG FEED</h1></div>
+      <div class="log-feed" id="log-feed">
+        <div class="log-entry"><span class="log-ts">[SYS]</span> Relay subsystem initialized — DESERT WIRE v2.1</div>
+        <div class="log-entry"><span class="log-ts">[NET]</span> Alpha Relay: uplink confirmed — X-Band 8.025 GHz</div>
+        <div class="log-entry warn"><span class="log-ts">[WARN]</span> Bravo Relay: SNR degradation detected — monitoring</div>
+        <div class="log-entry err"><span class="log-ts">[ERR]</span> Delta Relay: carrier lost — failover attempted</div>
+        <div class="log-entry"><span class="log-ts">[SEC]</span> KG-175D crypto resync — all active relays</div>
+        <div class="log-entry"><span class="log-ts">[NET]</span> Echo Relay: nominal — SIGINT pipeline active</div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- Login Modal -->
+<div id="login-modal" class="modal-overlay" style="display:none">
+  <div class="modal">
+    <div class="modal-hdr">
+      <svg width="28" height="28" viewBox="0 0 38 38" fill="none"><circle cx="19" cy="19" r="17" stroke="#4ade80" stroke-width="1.5"/><circle cx="19" cy="19" r="3" fill="#4ade80"/></svg>
+      <div>
+        <div class="modal-title">RELAY OPERATOR AUTH</div>
+        <div class="modal-sub">FOB KESTREL — DESERT WIRE</div>
+      </div>
+    </div>
+    <div id="login-err" class="modal-err" style="display:none"></div>
+    <div class="form-row"><label>OPERATOR ID</label><input type="text" id="m-user" placeholder="operator ID"></div>
+    <div class="form-row"><label>PASSPHRASE</label><input type="password" id="m-pass" placeholder="••••••••"></div>
+    <button class="btn-gold full-w" onclick="doLogin()">AUTHENTICATE</button>
+    <button class="btn-ghost full-w" onclick="closeLogin()">CANCEL</button>
+    <p class="modal-note">Unauthorized access prosecuted under UCMJ Art. 93a and 18 USC 1030</p>
+  </div>
+</div>
+
+<div class="class-banner bottom">TOP SECRET // SIGINT // NOFORN // EXERCISE</div>
+
+</div>
+<script>
+let currentPanel = 'overview';
+
+function updateTime() {
+  const n = new Date();
+  document.getElementById('sys-time').textContent =
+    n.toISOString().replace('T',' ').substring(0,19) + ' UTC';
+}
+setInterval(updateTime, 1000); updateTime();
+
+function showPanel(p) {
+  document.querySelectorAll('.panel').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.sb-link').forEach(el => el.classList.remove('active'));
+  document.getElementById('panel-'+p).classList.add('active');
+  currentPanel = p;
+}
+
+async function loadRelays() {
+  try {
+    const r = await fetch('/api/relay/status');
+    const d = await r.json();
+    const tbody = document.getElementById('relay-tbody');
+    tbody.innerHTML = d.relays.map(rel => `
+      <tr>
+        <td class="mono">${rel.id}</td>
+        <td>${rel.name}</td>
+        <td class="mono">${rel.freq}</td>
+        <td><span class="badge bdg-${rel.status.toLowerCase()}">${rel.status}</span></td>
+        <td>${rel.uptime}</td>
+        <td class="dim">${rel.last_sync}</td>
+      </tr>`).join('');
+    const cards = document.getElementById('relay-cards');
+    cards.innerHTML = d.relays.map(rel => `
+      <div class="relay-card ${rel.status.toLowerCase()}">
+        <div class="rc-id">${rel.id}</div>
+        <div class="rc-name">${rel.name}</div>
+        <div class="rc-freq">${rel.freq}</div>
+        <div class="badge bdg-${rel.status.toLowerCase()}">${rel.status}</div>
+      </div>`).join('');
+  } catch(e) {}
+}
+loadRelays(); setInterval(loadRelays, 30000);
+
+async function checkUplink() {
+  const url = document.getElementById('uplink-url').value.trim();
+  const res = document.getElementById('uplink-result');
+  const body = document.getElementById('rb-body');
+  const st   = document.getElementById('rb-status');
+  if (!url) return;
+  st.textContent = 'CHECKING...';
+  res.style.display = 'block';
+  body.textContent  = '';
+  try {
+    const r = await fetch('/api/uplink/check', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({target_url: url})
+    });
+    const d = await r.json();
+    st.textContent  = d.http_status ? `HTTP ${d.http_status} — ${d.latency_ms}ms` : 'FAILED';
+    st.className    = d.http_status === 200 ? 'green' : 'red';
+    body.textContent = JSON.stringify(d, null, 2);
+  } catch(e) {
+    st.textContent = 'ERROR'; body.textContent = e.message;
+  }
+}
+
+function showLogin() { document.getElementById('login-modal').style.display='flex'; }
+function closeLogin(){ document.getElementById('login-modal').style.display='none'; }
+
+async function doLogin() {
+  const u = document.getElementById('m-user').value;
+  const p = document.getElementById('m-pass').value;
+  const err = document.getElementById('login-err');
+  const r = await fetch('/api/auth/login', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({username:u, password:p})
+  });
+  const d = await r.json();
+  if (d.success) {
+    closeLogin();
+    document.getElementById('auth-panel').innerHTML =
+      `<span class="operator-tag">● ${d.name} [${d.clearance}]</span>
+       <button class="btn-ghost-sm" onclick="doLogout()">LOGOUT</button>`;
+  } else {
+    err.style.display='block'; err.textContent='AUTHENTICATION FAILED — ACCESS DENIED';
+  }
+}
+async function doLogout() {
+  await fetch('/api/auth/logout',{method:'POST'});
+  location.reload();
+}
+</script>
+</body>
+</html>

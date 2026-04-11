@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="login-wrap">
+  <div class="login-card">
+    <div class="login-icon">
+      <svg width="40" height="40" viewBox="0 0 34 34" fill="none">
+        <rect x="2" y="2" width="30" height="30" stroke="#f59e0b" stroke-width="1.5" fill="none"/>
+        <circle cx="17" cy="17" r="2.5" fill="#f59e0b"/>
+      </svg>
+    </div>
+    <h1>SIGINT NETWORK MONITOR</h1>
+    <p class="login-sub">FOB KESTREL COLLECTION MANAGEMENT SYSTEM<br>Authorized Access Only — UCMJ Article 93a</p>
+    {% if error %}
+    <div class="alert-err">{{ error }}</div>
+    {% endif %}
+    <form method="POST" action="/login">
+      <div class="frow"><label>OPERATOR ID</label><input type="text" name="username" placeholder="operator.id" required autofocus></div>
+      <div class="frow"><label>PASSPHRASE</label><input type="password" name="password" placeholder="••••••••" required></div>
+      <button type="submit" class="btn-login">AUTHENTICATE</button>
+    </form>
+    <p class="login-note">Failed attempts are logged and reported to COMSEC.</p>
+  </div>
+</div>
+{% endblock %}

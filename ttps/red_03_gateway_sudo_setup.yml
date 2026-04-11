@@ -1,0 +1,59 @@
+- name: 'DESERT WIRE: Setup M3 sigint-gateway sudo node Misconfiguration'
+  description: >-
+    Configures M3 (sigint-gateway) as the pivot host between DMZ and private
+    subnet. Creates the sigops user with SSH key-only authentication. Deploys
+    a misconfigured sudo rule granting sigops NOPASSWD access to /usr/bin/node
+    (GTFOBin privilege escalation path). Stores the M4 API token in
+    /opt/gateway/config.json — accessible after root escalation.
+    Run on M3 before the exercise. After running, copy M2 public key to
+    sigops authorized_keys.
+  tactic: privilege-escalation
+  technique_id: T1548.003
+  technique_name: 'Abuse Elevation Control Mechanism: Sudo and Sudo Caching'
+  singleton: true
+  repeatable: false
+  delete_payload: false
+  executors:
+  - name: sh
+    platform: linux
+    command: >-
+      echo "[RED] Setting up M3 sigint-gateway sudo misconfiguration";
+      apt-get update -qq;
+      DEBIAN_FRONTEND=noninteractive apt-get install -y openssh-server nodejs 2>/dev/null;
+      id sigops 2>/dev/null || useradd -m -s /bin/bash sigops;
+      mkdir -p /home/sigops/.ssh;
+      chmod 700 /home/sigops/.ssh;
+      touch /home/sigops/.ssh/authorized_keys;
+      chmod 600 /home/sigops/.ssh/authorized_keys;
+      chown -R sigops:sigops /home/sigops/.ssh;
+      mkdir -p /etc/sudoers.d;
+      echo "sigops ALL=(ALL) NOPASSWD: /usr/bin/node" > /etc/sudoers.d/desert-wire-gateway;
+      chmod 440 /etc/sudoers.d/desert-wire-gateway;
+      mkdir -p /opt/gateway;
+      printf '{"role":"signals-gateway","downstream_services":{"sigint_processor":{"port":5000,"auth_token":"DSRT-SIG-4a7f2c91","note":"Rotate Q1 2025"}}}
+' > /opt/gateway/config.json;
+      chmod 600 /opt/gateway/config.json;
+      FLAG="FLAG{$(openssl rand -hex 8)_sudo_node_pivot}";
+      echo "$FLAG" > /root/flag3.txt;
+      chmod 600 /root/flag3.txt;
+      sed -i 's/^PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config 2>/dev/null || true;
+      echo "PasswordAuthentication no" >> /etc/ssh/sshd_config;
+      systemctl restart sshd;
+      echo "[RED] M3 deployed. sudo node rule active.";
+      echo "[RED] Flag: $FLAG";
+      echo "[RED] ACTION: Copy M2 pubkey to /home/sigops/.ssh/authorized_keys"
+    code: null
+    language: null
+    build_target: null
+    payloads: []
+    uploads: []
+    timeout: 120
+    parsers: []
+    cleanup:
+    - rm -f /etc/sudoers.d/desert-wire-gateway
+    - userdel -r sigops 2>/dev/null || true
+    - rm -f /root/flag3.txt /opt/gateway/config.json
+    variations: []
+    additional_info: {}
+  requirements: []
+  id: dw03c4d5e6f7a8b9c0d1e2f3a4b5c6d7

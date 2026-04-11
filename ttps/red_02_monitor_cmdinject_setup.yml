@@ -1,0 +1,53 @@
+- name: 'DESERT WIRE: Setup M2 sigint-monitor OS Command Injection Flask App'
+  description: >-
+    Installs Python3/Flask and deploys the DESERT WIRE SIGINT Network Monitor
+    dashboard on M2 (sigint-monitor, port 8080). The app contains an OS command
+    injection vulnerability in the POST /api/diagnostic/ping endpoint where the
+    host parameter is passed unsanitized to subprocess.run with shell=True.
+    Also exposes /api/internal/status (unauthenticated) which returns bootstrap
+    credentials — the SSRF target from M1. Generates SSH key for M3 pivot.
+    Run on M2 before the exercise.
+  tactic: resource-development
+  technique_id: T1608.001
+  technique_name: 'Stage Capabilities: Upload Malware'
+  singleton: true
+  repeatable: false
+  delete_payload: false
+  executors:
+  - name: sh
+    platform: linux
+    command: >-
+      echo "[RED] Setting up M2 sigint-monitor command injection app";
+      apt-get update -qq;
+      DEBIAN_FRONTEND=noninteractive apt-get install -y python3 python3-pip python3-venv openssh-client 2>/dev/null;
+      id sigmon 2>/dev/null || useradd -r -s /bin/false -d /opt/sigmon sigmon;
+      mkdir -p /opt/sigmon/monitor /opt/sigmon/classified /opt/monitor/keys;
+      python3 -m venv /opt/sigmon/monitor/venv;
+      /opt/sigmon/monitor/venv/bin/pip install flask gunicorn --quiet 2>/dev/null;
+      FLAG="FLAG{$(openssl rand -hex 8)_cmd_inject_monitor}";
+      echo "$FLAG" > /opt/sigmon/classified/flag2.txt;
+      chmod 640 /opt/sigmon/classified/flag2.txt;
+      ssh-keygen -t rsa -b 2048 -f /opt/monitor/keys/sigops_rsa -N "" -q;
+      chmod 600 /opt/monitor/keys/sigops_rsa;
+      chmod 644 /opt/monitor/keys/sigops_rsa.pub;
+      chown -R sigmon:sigmon /opt/sigmon /opt/monitor;
+      touch /var/log/sigint_monitor.log;
+      chown sigmon:sigmon /var/log/sigint_monitor.log && chmod 644 /var/log/sigint_monitor.log;
+      echo "[RED] M2 skeleton deployed. Run full setup.sh for complete app.";
+      echo "[RED] Flag: $FLAG";
+      echo "[RED] SSH key at: /opt/monitor/keys/sigops_rsa";
+      echo "[RED] Copy pubkey to M3: cat /opt/monitor/keys/sigops_rsa.pub"
+    code: null
+    language: null
+    build_target: null
+    payloads: []
+    uploads: []
+    timeout: 180
+    parsers: []
+    cleanup:
+    - systemctl stop sigint-monitor 2>/dev/null || true
+    - rm -rf /opt/sigmon/monitor /opt/monitor/keys
+    variations: []
+    additional_info: {}
+  requirements: []
+  id: dw02b3c4d5e6f7a8b9c0d1e2f3a4b5c6
