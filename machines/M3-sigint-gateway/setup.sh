@@ -38,7 +38,7 @@ EOF
 chmod 440 /etc/sudoers.d/desert-wire-gateway
 
 # Flag
-FLAG="FLAG{$(openssl rand -hex 8)_sudo_node_pivot}"
+FLAG="FLAG{sudo_node_pivot_achieved}"
 echo "$FLAG" > /root/flag3.txt
 chmod 600 /root/flag3.txt
 
