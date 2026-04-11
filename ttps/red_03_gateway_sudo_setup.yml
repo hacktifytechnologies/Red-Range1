@@ -18,8 +18,6 @@
     platform: linux
     command: >-
       echo "[RED] Setting up M3 sigint-gateway sudo misconfiguration";
-      apt-get update -qq;
-      DEBIAN_FRONTEND=noninteractive apt-get install -y openssh-server nodejs 2>/dev/null;
       id sigops 2>/dev/null || useradd -m -s /bin/bash sigops;
       mkdir -p /home/sigops/.ssh;
       chmod 700 /home/sigops/.ssh;
