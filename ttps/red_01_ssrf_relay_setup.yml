@@ -18,14 +18,12 @@
     platform: linux
     command: >-
       echo "[RED] Setting up M1 sigint-relay SSRF app";
-      apt-get update -qq;
-      DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs npm authbind curl 2>/dev/null;
       id sigint 2>/dev/null || useradd -r -s /bin/false -d /opt/sigint sigint;
       touch /etc/authbind/byport/80;
       chown sigint:sigint /etc/authbind/byport/80;
       chmod 755 /etc/authbind/byport/80;
       mkdir -p /opt/sigint/relay /opt/sigint/classified;
-      FLAG="FLAG{$(openssl rand -hex 8)_ssrf_relay_breach}";
+      FLAG="FLAG{ssrf_relay_breach_achieved}";
       echo "$FLAG" > /opt/sigint/classified/flag1.txt;
       chmod 640 /opt/sigint/classified/flag1.txt;
       chown sigint:sigint /opt/sigint/classified/flag1.txt;
