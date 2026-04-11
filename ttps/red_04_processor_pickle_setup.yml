@@ -17,13 +17,11 @@
     platform: linux
     command: >-
       echo "[RED] Setting up M4 sigint-processor pickle RCE app";
-      apt-get update -qq;
-      DEBIAN_FRONTEND=noninteractive apt-get install -y python3 python3-pip python3-venv 2>/dev/null;
       id sigproc 2>/dev/null || useradd -r -s /bin/false -d /opt/sigproc sigproc;
       mkdir -p /opt/sigproc/processor /opt/sigproc/classified /opt/processor/conf;
       python3 -m venv /opt/sigproc/processor/venv;
       /opt/sigproc/processor/venv/bin/pip install flask gunicorn --quiet 2>/dev/null;
-      FLAG="FLAG{$(openssl rand -hex 8)_pickle_rce_processor}";
+      FLAG="FLAG{pickle_rce_processor_executed}";
       echo "$FLAG" > /opt/sigproc/classified/flag4.txt;
       chmod 640 /opt/sigproc/classified/flag4.txt;
       chown sigproc:sigproc /opt/sigproc/classified/flag4.txt;
@@ -46,9 +44,7 @@ note = Rotate overdue
     uploads: []
     timeout: 180
     parsers: []
-    cleanup:
-    - systemctl stop sigint-processor 2>/dev/null || true
-    - rm -rf /opt/sigproc /opt/processor
+    cleanup: []
     variations: []
     additional_info: {}
   requirements: []
