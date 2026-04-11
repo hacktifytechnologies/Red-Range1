@@ -1,4 +1,5 @@
 - name: 'DESERT WIRE: Setup M4 sigint-processor Pickle Deserialization RCE'
+  id: dw04d5e6f7a8b9c0d1e2f3a4b5c6d7e8
   description: >-
     Deploys the DESERT WIRE Signal Processing API on M4 (sigint-processor, port 5000).
     The POST /api/signal/process endpoint calls pickle.loads() on base64-decoded
@@ -13,39 +14,34 @@
   repeatable: false
   delete_payload: false
   executors:
-  - name: sh
-    platform: linux
-    command: >-
-      echo "[RED] Setting up M4 sigint-processor pickle RCE app";
-      id sigproc 2>/dev/null || useradd -r -s /bin/false -d /opt/sigproc sigproc;
-      mkdir -p /opt/sigproc/processor /opt/sigproc/classified /opt/processor/conf;
-      python3 -m venv /opt/sigproc/processor/venv;
-      /opt/sigproc/processor/venv/bin/pip install flask gunicorn --quiet 2>/dev/null;
-      FLAG="FLAG{pickle_rce_processor_executed}";
-      echo "$FLAG" > /opt/sigproc/classified/flag4.txt;
-      chmod 640 /opt/sigproc/classified/flag4.txt;
-      chown sigproc:sigproc /opt/sigproc/classified/flag4.txt;
-      printf "[sigint-archive]
-ssh_user = archivist
-ssh_pass = Arch1v3@D3S3RT
-note = Rotate overdue
-" > /opt/processor/conf/archive.conf;
-      chmod 640 /opt/processor/conf/archive.conf;
-      chown -R sigproc:sigproc /opt/sigproc /opt/processor;
-      touch /var/log/sigint_processor.log;
-      chown sigproc:sigproc /var/log/sigint_processor.log && chmod 644 /var/log/sigint_processor.log;
-      echo "[RED] M4 deployed. Pickle RCE ready on port 5000.";
-      echo "[RED] Flag: $FLAG";
-      echo "[RED] API token: DSRT-SIG-4a7f2c91"
-    code: null
-    language: null
-    build_target: null
-    payloads: []
-    uploads: []
-    timeout: 180
-    parsers: []
-    cleanup: []
-    variations: []
-    additional_info: {}
+    - name: sh
+      platform: linux
+      command: |
+        echo "[RED] Setting up M4 sigint-processor pickle RCE app"
+        id sigproc 2>/dev/null || useradd -r -s /bin/false -d /opt/sigproc sigproc
+        mkdir -p /opt/sigproc/processor /opt/sigproc/classified /opt/processor/conf
+        python3 -m venv /opt/sigproc/processor/venv
+        /opt/sigproc/processor/venv/bin/pip install flask gunicorn --quiet 2>/dev/null
+        FLAG="FLAG{pickle_rce_processor_executed}"
+        echo "$FLAG" > /opt/sigproc/classified/flag4.txt
+        chmod 640 /opt/sigproc/classified/flag4.txt
+        chown sigproc:sigproc /opt/sigproc/classified/flag4.txt
+        printf "[sigint-archive]\nssh_user = archivist\nssh_pass = Arch1v3@D3S3RT\nnote = Rotate overdue\n" > /opt/processor/conf/archive.conf
+        chmod 640 /opt/processor/conf/archive.conf
+        chown -R sigproc:sigproc /opt/sigproc /opt/processor
+        touch /var/log/sigint_processor.log
+        chown sigproc:sigproc /var/log/sigint_processor.log && chmod 644 /var/log/sigint_processor.log
+        echo "[RED] M4 deployed. Pickle RCE ready on port 5000."
+        echo "[RED] Flag: $FLAG"
+        echo "[RED] API token: DSRT-SIG-4a7f2c91"
+      code: null
+      language: null
+      build_target: null
+      payloads: []
+      uploads: []
+      timeout: 180
+      parsers: []
+      cleanup: []
+      variations: []
+      additional_info: {}
   requirements: []
-  id: dw04d5e6f7a8b9c0d1e2f3a4b5c6d7e8
