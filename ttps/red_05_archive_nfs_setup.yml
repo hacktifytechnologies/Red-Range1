@@ -1,4 +1,5 @@
 - name: 'DESERT WIRE: Setup M5 sigint-archive NFS no_root_squash'
+  id: dw05e6f7a8b9c0d1e2f3a4b5c6d7e8f9
   description: >-
     Configures M5 (sigint-archive) as the classified signal archive server.
     Creates the archivist user with SSH password auth. Exports the classified
@@ -14,38 +15,36 @@
   repeatable: false
   delete_payload: false
   executors:
-  - name: sh
-    platform: linux
-    command: >-
-      echo "[RED] Setting up M5 sigint-archive NFS no_root_squash";
-      id archivist 2>/dev/null || useradd -m -s /bin/bash archivist;
-      echo "archivist:Arch1v3@D3S3RT" | chpasswd;
-      mkdir -p /opt/sigint/classified-archive/intercepts /opt/sigint/classified-archive/selectors;
-      FLAG="FLAG{nfs_squash_archive_pwned}";
-      echo "$FLAG" > /opt/sigint/classified-archive/CLASSIFIED_FLAG.txt;
-      chmod 600 /opt/sigint/classified-archive/CLASSIFIED_FLAG.txt;
-      chown root:root /opt/sigint/classified-archive/CLASSIFIED_FLAG.txt;
-      chmod 750 /opt/sigint/classified-archive;
-      printf "/opt/sigint/classified-archive *(rw,sync,no_subtree_check,no_root_squash)
-" > /etc/exports;
-      exportfs -ra;
-      systemctl restart nfs-kernel-server && systemctl enable nfs-kernel-server;
-      sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/ssh_config 2>/dev/null || true;
-      grep -q "PasswordAuthentication yes" /etc/ssh/ssh_config || echo "PasswordAuthentication yes" >> /etc/ssh/ssh_config;
-      systemctl restart ssh;
-      echo "[RED] M5 deployed. NFS no_root_squash active.";
-      echo "[RED] FINAL Flag: $FLAG";
-      echo "[RED] NFS: /opt/sigint/classified-archive (no_root_squash)";
-      exportfs -v
-    code: null
-    language: null
-    build_target: null
-    payloads: []
-    uploads: []
-    timeout: 120
-    parsers: []
-    cleanup: []
-    variations: []
-    additional_info: {}
+    - name: sh
+      platform: linux
+      command: |
+        echo "[RED] Setting up M5 sigint-archive NFS no_root_squash"
+        id archivist 2>/dev/null || useradd -m -s /bin/bash archivist
+        echo "archivist:Arch1v3@D3S3RT" | chpasswd
+        mkdir -p /opt/sigint/classified-archive/intercepts /opt/sigint/classified-archive/selectors
+        FLAG="FLAG{nfs_squash_archive_pwned}"
+        echo "$FLAG" > /opt/sigint/classified-archive/CLASSIFIED_FLAG.txt
+        chmod 600 /opt/sigint/classified-archive/CLASSIFIED_FLAG.txt
+        chown root:root /opt/sigint/classified-archive/CLASSIFIED_FLAG.txt
+        chmod 750 /opt/sigint/classified-archive
+        printf "/opt/sigint/classified-archive *(rw,sync,no_subtree_check,no_root_squash)\n" > /etc/exports
+        exportfs -ra
+        systemctl restart nfs-kernel-server && systemctl enable nfs-kernel-server
+        sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/ssh_config 2>/dev/null || true
+        grep -q "PasswordAuthentication yes" /etc/ssh/ssh_config || echo "PasswordAuthentication yes" >> /etc/ssh/ssh_config
+        systemctl restart ssh
+        echo "[RED] M5 deployed. NFS no_root_squash active."
+        echo "[RED] FINAL Flag: $FLAG"
+        echo "[RED] NFS: /opt/sigint/classified-archive (no_root_squash)"
+        exportfs -v
+      code: null
+      language: null
+      build_target: null
+      payloads: []
+      uploads: []
+      timeout: 120
+      parsers: []
+      cleanup: []
+      variations: []
+      additional_info: {}
   requirements: []
-  id: dw05e6f7a8b9c0d1e2f3a4b5c6d7e8f9
