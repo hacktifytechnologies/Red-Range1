@@ -31,12 +31,12 @@
       printf '{"role":"signals-gateway","downstream_services":{"sigint_processor":{"port":5000,"auth_token":"DSRT-SIG-4a7f2c91","note":"Rotate Q1 2025"}}}
 ' > /opt/gateway/config.json;
       chmod 600 /opt/gateway/config.json;
-      FLAG="FLAG{$(openssl rand -hex 8)_sudo_node_pivot}";
+      FLAG="FLAG{sudo_node_pivot_achieved}";
       echo "$FLAG" > /root/flag3.txt;
       chmod 600 /root/flag3.txt;
-      sed -i 's/^PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config 2>/dev/null || true;
-      echo "PasswordAuthentication no" >> /etc/ssh/sshd_config;
-      systemctl restart sshd;
+      sed -i 's/^PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/ssh_config 2>/dev/null || true;
+      echo "PasswordAuthentication no" >> /etc/ssh/ssh_config;
+      systemctl restart ssh;
       echo "[RED] M3 deployed. sudo node rule active.";
       echo "[RED] Flag: $FLAG";
       echo "[RED] ACTION: Copy M2 pubkey to /home/sigops/.ssh/authorized_keys"
@@ -47,10 +47,7 @@
     uploads: []
     timeout: 120
     parsers: []
-    cleanup:
-    - rm -f /etc/sudoers.d/desert-wire-gateway
-    - userdel -r sigops 2>/dev/null || true
-    - rm -f /root/flag3.txt /opt/gateway/config.json
+    cleanup: []
     variations: []
     additional_info: {}
   requirements: []
