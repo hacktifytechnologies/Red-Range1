@@ -1,9 +1,9 @@
-# Operation DESERT WIRE — Participant Assessment
+# Operation DESERT WIRE - Participant Assessment
 ## Challenge Verification Questions
 
 > **Instructions:**
 > - Each scenario has **3 MCQs** (choose the single best answer) and **2 Static Answer** questions
-> - Questions are based on information gathered **during exploitation** — you must have solved the challenge to answer correctly
+> - Questions are based on information gathered **during exploitation** - you must have solved the challenge to answer correctly
 > - Static Question 1 in each scenario is always the **Flag Submission**
 > - Answers are provided at the end of this document for facilitator use only
 
@@ -11,7 +11,7 @@
 
 ---
 
-# SCENARIO 1 — Ghost Signal (M1: sigint-relay)
+# SCENARIO 1 - Ghost Signal (M1: sigint-relay)
 ### *SSRF via Satellite Uplink Checker*
 
 ---
@@ -49,7 +49,7 @@
 
 ---
 
-### Static Question 1.4 — Flag Submission
+### Static Question 1.4 - Flag Submission
 **Submit the flag found on M1 after achieving SSRF-based access:**
 
 **Answer:** `FLAG{ssrf_relay_breach_achieved}`
@@ -65,7 +65,7 @@
 
 ---
 
-# SCENARIO 2 — Shadow Diagnostic (M2: sigint-monitor)
+# SCENARIO 2 - Shadow Diagnostic (M2: sigint-monitor)
 ### *OS Command Injection in Network Diagnostic Tool*
 
 ---
@@ -93,7 +93,7 @@
 ---
 
 ### MCQ 2.3
-**The username associated with the SSH private key found on M2 — which user does it authenticate as on M3 (sigint-gateway)?**
+**The username associated with the SSH private key found on M2 - which user does it authenticate as on M3 (sigint-gateway)?**
 
 - A) `sigmon`
 - B) `gateway_ops`
@@ -103,7 +103,7 @@
 
 ---
 
-### Static Question 2.4 — Flag Submission
+### Static Question 2.4 - Flag Submission
 **Submit the flag found inside `/opt/sigmon/classified/flag2.txt` on M2:**
 
 **Answer:** `FLAG{301d2eaf3e3cfd5c_cmd_inject_monitor}`
@@ -119,7 +119,7 @@
 
 ---
 
-# SCENARIO 3 — Broken Trust (M3: sigint-gateway)
+# SCENARIO 3 - Broken Trust (M3: sigint-gateway)
 ### *sudo node GTFOBin Privilege Escalation*
 
 ---
@@ -157,7 +157,7 @@
 
 ---
 
-### Static Question 3.4 — Flag Submission
+### Static Question 3.4 - Flag Submission
 **Submit the flag found at `/root/flag3.txt` on M3:**
 
 **Answer:** `FLAG{sudo_node_pivot_achieved}`
@@ -173,7 +173,7 @@
 
 ---
 
-# SCENARIO 4 — Poisoned Pipeline (M4: sigint-processor)
+# SCENARIO 4 - Poisoned Pipeline (M4: sigint-processor)
 ### *Python Pickle Deserialization RCE*
 
 ---
@@ -211,7 +211,7 @@
 
 ---
 
-### Static Question 4.4 — Flag Submission
+### Static Question 4.4 - Flag Submission
 **Submit the flag found at `/opt/sigproc/classified/flag4.txt` on M4:**
 
 **Answer:** `FLAG{pickle_rce_processor_executed}`
@@ -227,7 +227,7 @@
 
 ---
 
-# SCENARIO 5 — Final Breach (M5: sigint-archive)
+# SCENARIO 5 - Final Breach (M5: sigint-archive)
 ### *NFS no_root_squash → SUID Bash Escape*
 
 ---
@@ -265,7 +265,7 @@
 
 ---
 
-### Static Question 5.4 — Flag Submission
+### Static Question 5.4 - Flag Submission
 **Submit the final flag found at `/opt/sigint/classified-archive/CLASSIFIED_FLAG.txt` on M5:**
 
 **Answer:** `FLAG{nfs_squash_archive_pwned}`
@@ -318,10 +318,10 @@
 
 | Score   | Percentage | Assessment        |
 |---------|------------|-------------------|
-| 25/25   | 100%       | Full Chain Compromised — DOMAIN BREACH |
-| 20–24   | 80–96%     | Deep Penetration — Minor gaps          |
-| 15–19   | 60–76%     | Partial Compromise — Training recommended |
-| 10–14   | 40–56%     | Limited Access — Significant gaps      |
-| < 10    | < 40%      | Insufficient — Remedial training required |
+| 25/25   | 100%       | Full Chain Compromised - DOMAIN BREACH |
+| 20–24   | 80–96%     | Deep Penetration - Minor gaps          |
+| 15–19   | 60–76%     | Partial Compromise - Training recommended |
+| 10–14   | 40–56%     | Limited Access - Significant gaps      |
+| < 10    | < 40%      | Insufficient - Remedial training required |
 
 > **Note:** A participant who submits all 5 correct flags but cannot answer the knowledge questions likely used hints or shared answers. Flag + knowledge answers together indicate genuine exploitation.
