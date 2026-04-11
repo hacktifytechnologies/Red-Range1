@@ -28,7 +28,7 @@ chown -R sigint:sigint /opt/sigint/relay
 cd /opt/sigint/relay && npm install --quiet 2>/dev/null
 
 # Generate flag
-FLAG="Flag{ssrf_relay_breach_achieved}"
+FLAG="FLAG{ssrf_relay_breach_achieved}"
 mkdir -p /opt/sigint/classified
 echo "$FLAG" > /opt/sigint/classified/flag1.txt
 chmod 640 /opt/sigint/classified/flag1.txt
