@@ -1,9 +1,9 @@
-# Operation DESERT WIRE — SIGINT Cyber Range
+# Operation DESERT WIRE - SIGINT Cyber Range
 
 **Classification:** UNCLASSIFIED // EXERCISE ONLY
 **Domain Theme:** Military Signals Intelligence Forward Operating Base
 **Network:** iwdesert.mil (simulated)
-**Platform:** Ubuntu 22.04 Jammy — OpenStack
+**Platform:** Ubuntu 22.04 Jammy - OpenStack
 
 ---
 
@@ -63,7 +63,7 @@ git init operation-desert-wire
 cd operation-desert-wire
 cp -r /path/to/extracted/* .
 git add .
-git commit -m "Operation DESERT WIRE — Initial Release"
+git commit -m "Operation DESERT WIRE - Initial Release"
 git remote add origin https://github.com/<your-org>/operation-desert-wire.git
 git branch -M main
 git push -u origin main
