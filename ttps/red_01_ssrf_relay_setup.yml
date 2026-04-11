@@ -39,9 +39,7 @@
     uploads: []
     timeout: 180
     parsers: []
-    cleanup:
-    - systemctl stop sigint-relay 2>/dev/null || true
-    - rm -rf /opt/sigint/relay
+    cleanup: []
     variations: []
     additional_info: {}
   requirements: []
