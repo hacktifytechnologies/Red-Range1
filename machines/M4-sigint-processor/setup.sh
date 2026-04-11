@@ -18,7 +18,7 @@ cp -r "$SCRIPT_DIR/app/." /opt/sigproc/processor/
 chown -R sigproc:sigproc /opt/sigproc/processor
 
 # Flag
-FLAG="FLAG{$(openssl rand -hex 8)_pickle_rce_processor}"
+FLAG="FLAG{pickle_rce_processor_executed}"
 mkdir -p /opt/sigproc/classified
 echo "$FLAG" > /opt/sigproc/classified/flag4.txt
 chmod 640 /opt/sigproc/classified/flag4.txt
