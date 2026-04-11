@@ -18,7 +18,7 @@ cp -r "$SCRIPT_DIR/app/." /opt/sigmon/monitor/
 chown -R sigmon:sigmon /opt/sigmon/monitor
 
 # Generate flag
-FLAG="FLAG{$(openssl rand -hex 8)_cmd_inject_monitor}"
+FLAG="FLAG{301d2eaf3e3cfd5c_cmd_inject_monitor}"
 mkdir -p /opt/sigmon/classified
 echo "$FLAG" > /opt/sigmon/classified/flag2.txt
 chmod 640 /opt/sigmon/classified/flag2.txt
