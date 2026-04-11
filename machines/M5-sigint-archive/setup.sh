@@ -42,7 +42,7 @@ Contact: COMSEC@KESTREL.MIL
 EOF
 
 # Generate flag in the archive root
-FLAG="FLAG{$(openssl rand -hex 8)_nfs_squash_archive_pwned}"
+FLAG="FLAG{nfs_squash_archive_pwned}"
 echo "$FLAG" > /opt/sigint/classified-archive/CLASSIFIED_FLAG.txt
 chmod 600 /opt/sigint/classified-archive/CLASSIFIED_FLAG.txt
 chown root:root /opt/sigint/classified-archive/CLASSIFIED_FLAG.txt
