@@ -64,10 +64,10 @@ chmod 600 /opt/gateway/config.json
 chown root:root /opt/gateway/config.json
 
 # SSH config
-sed -i 's/^#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
-sed -i 's/^PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
-sed -i 's/^#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd_config
-systemctl restart sshd && systemctl enable sshd
+sed -i 's/^#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/ssh_config
+sed -i 's/^PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/ssh_config
+sed -i 's/^#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/ssh_config
+systemctl restart ssh && systemctl enable ssh
 
 echo "========================================" >> /root/ctf_setup_log.txt
 echo "M3 (sigint-gateway) Flag: $FLAG" >> /root/ctf_setup_log.txt
