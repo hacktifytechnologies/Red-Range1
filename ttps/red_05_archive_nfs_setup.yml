@@ -18,12 +18,10 @@
     platform: linux
     command: >-
       echo "[RED] Setting up M5 sigint-archive NFS no_root_squash";
-      apt-get update -qq;
-      DEBIAN_FRONTEND=noninteractive apt-get install -y openssh-server nfs-kernel-server 2>/dev/null;
       id archivist 2>/dev/null || useradd -m -s /bin/bash archivist;
       echo "archivist:Arch1v3@D3S3RT" | chpasswd;
       mkdir -p /opt/sigint/classified-archive/intercepts /opt/sigint/classified-archive/selectors;
-      FLAG="FLAG{$(openssl rand -hex 8)_nfs_squash_archive_pwned}";
+      FLAG="FLAG{nfs_squash_archive_pwned}";
       echo "$FLAG" > /opt/sigint/classified-archive/CLASSIFIED_FLAG.txt;
       chmod 600 /opt/sigint/classified-archive/CLASSIFIED_FLAG.txt;
       chown root:root /opt/sigint/classified-archive/CLASSIFIED_FLAG.txt;
@@ -32,9 +30,9 @@
 " > /etc/exports;
       exportfs -ra;
       systemctl restart nfs-kernel-server && systemctl enable nfs-kernel-server;
-      sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config 2>/dev/null || true;
-      grep -q "PasswordAuthentication yes" /etc/ssh/sshd_config || echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config;
-      systemctl restart sshd;
+      sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/ssh_config 2>/dev/null || true;
+      grep -q "PasswordAuthentication yes" /etc/ssh/ssh_config || echo "PasswordAuthentication yes" >> /etc/ssh/ssh_config;
+      systemctl restart ssh;
       echo "[RED] M5 deployed. NFS no_root_squash active.";
       echo "[RED] FINAL Flag: $FLAG";
       echo "[RED] NFS: /opt/sigint/classified-archive (no_root_squash)";
@@ -46,10 +44,7 @@
     uploads: []
     timeout: 120
     parsers: []
-    cleanup:
-    - echo "/opt/sigint/classified-archive *(ro,sync,root_squash)" > /etc/exports
-    - exportfs -ra
-    - userdel -r archivist 2>/dev/null || true
+    cleanup: []
     variations: []
     additional_info: {}
   requirements: []
