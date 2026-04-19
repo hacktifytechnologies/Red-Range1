@@ -79,6 +79,7 @@ cat /opt/sigproc/classified/flag4.txt
 cat /opt/processor/conf/archive.conf
 # Shows: archivist : Arch1v3@D3S3RT
 ```
+<img width="862" height="229" alt="image" src="https://github.com/user-attachments/assets/4f7d6248-675a-4f5f-ad84-e78988a01a1e" />
 
 ---
 
