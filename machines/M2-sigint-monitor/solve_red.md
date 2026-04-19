@@ -17,6 +17,9 @@ curl -s -X POST http://172.24.4.51:8080/login \
   -c /tmp/cookies2.txt \
   -d "username=monitor_admin&password=S1GN4L#Mon!tor"
 ```
+
+<img width="1451" height="502" alt="image" src="https://github.com/user-attachments/assets/291c4508-1416-407f-ad0a-a8d1d0d7ed27" />
+
 <img width="1470" height="785" alt="image" src="https://github.com/user-attachments/assets/c0f671ab-d842-442a-b819-11f6bffe2308" />
 
 ---
