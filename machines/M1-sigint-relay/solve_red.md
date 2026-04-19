@@ -7,6 +7,7 @@
 ---
 
 ## Step 1 — Recon
+<img width="1063" height="794" alt="image" src="https://github.com/user-attachments/assets/ea7834d4-cb74-47f5-96a8-1b2bd46c3a19" />
 
 ```bash
 curl -s http://<M1-FLOAT-IP>/ | grep -i "uplink\|api\|check"
