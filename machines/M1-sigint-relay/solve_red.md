@@ -64,6 +64,7 @@ curl -s -X POST http://<M1-IP>/api/uplink/check \
   -d '{"target_url":"http://<M2-DMZ-IP>:8080/api/internal/status"}' \
   | python3 -m json.tool
 ```
+<img width="1451" height="315" alt="image" src="https://github.com/user-attachments/assets/dd79dfc9-b8fd-4376-88e6-61229a7bed69" />
 
 Response contains:
 ```json
@@ -77,6 +78,8 @@ Response contains:
   }
 }
 ```
+<img width="836" height="504" alt="image" src="https://github.com/user-attachments/assets/d26f5aff-8ccf-4224-be80-ad1c0bac5ef4" />
+
 
 ---
 
