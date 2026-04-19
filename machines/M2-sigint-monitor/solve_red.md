@@ -5,6 +5,8 @@
 **Entry:** Credentials from M1 SSRF: `monitor_admin : S1GN4L#Mon!tor`
 
 ---
+<img width="1459" height="793" alt="image" src="https://github.com/user-attachments/assets/de7e4578-83ed-4548-9461-7e6028af6819" />
+
 
 ## Step 1 — Login
 
