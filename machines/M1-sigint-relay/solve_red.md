@@ -12,6 +12,8 @@
 curl -s http://<M1-FLOAT-IP>/ | grep -i "uplink\|api\|check"
 # Navigate to UPLINK CHECKER panel in the dashboard
 ```
+<img width="1467" height="624" alt="image" src="https://github.com/user-attachments/assets/3277811b-0b64-4506-a106-8d96b747d99b" />
+
 
 ---
 
