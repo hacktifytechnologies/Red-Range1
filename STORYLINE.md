@@ -69,27 +69,6 @@ client mounting the share as root retains root privileges on the server's filesy
 
 ---
 
-## Blue Team Brief (FOB KESTREL SOC)
-
-You are the Security Operations Cell at FOB KESTREL. A THREATCON DELTA alert was
-issued after anomalous HTTP requests were detected against the external relay portal.
-Your mission is to detect, analyze, and document each stage of the attack.
-
-**For each scenario you must:**
-- Identify the specific log evidence of the attack
-- Name the technique used (MITRE ATT&CK)
-- Identify the affected account/service
-- Provide the remediation steps
-
-**Key Log Sources:**
-- M1: `/var/log/desertrelay.log` (Node.js access log)
-- M2: `journalctl -u sigint-monitor`, `/var/log/sigint_monitor.log`
-- M3: `/var/log/auth.log` (sudo events, SSH logins)
-- M4: `journalctl -u sigint-processor`, pickle deserialization events
-- M5: `/var/log/syslog` (NFS mount events), auditd
-
----
-
 ## Chain of Compromise — Summary
 
 ```
