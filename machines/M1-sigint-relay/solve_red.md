@@ -75,6 +75,9 @@ curl -s -X POST http://<M1-IP>/api/uplink/check \
 
 <img width="1016" height="425" alt="image" src="https://github.com/user-attachments/assets/a7c7171b-eed1-44ea-af14-3eedccc70242" />
 
+<img width="1071" height="714" alt="image" src="https://github.com/user-attachments/assets/9bfe0cc9-898d-4e79-8274-c85edcec86f8" />
+
+
 Response contains:
 ```json
 {
