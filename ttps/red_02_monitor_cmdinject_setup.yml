@@ -8,9 +8,9 @@
     Also exposes /api/internal/status (unauthenticated) which returns bootstrap
     credentials — the SSRF target from M1. Generates SSH key for M3 pivot.
     Run on M2 before the exercise.
-  tactic: resource-development
-  technique_id: T1608.001
-  technique_name: 'Stage Capabilities: Upload Malware'
+  tactic: execution
+  technique_id: T1059.004
+  technique_name: 'Command & Scripting Interpreter: Unix Shell'
   singleton: true
   repeatable: false
   delete_payload: false
