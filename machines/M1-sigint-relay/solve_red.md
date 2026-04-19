@@ -9,6 +9,9 @@
 ## Step 1 — Recon
 <img width="1063" height="794" alt="image" src="https://github.com/user-attachments/assets/ea7834d4-cb74-47f5-96a8-1b2bd46c3a19" />
 
+<img width="1468" height="869" alt="image" src="https://github.com/user-attachments/assets/ac3bc94b-e625-4556-b94a-4e982b6f284b" />
+
+
 ```bash
 curl -s http://<M1-FLOAT-IP>/ | grep -i "uplink\|api\|check"
 # Navigate to UPLINK CHECKER panel in the dashboard
