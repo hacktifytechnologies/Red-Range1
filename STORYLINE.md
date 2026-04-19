@@ -1,4 +1,4 @@
-# Operation DESERT WIRE — Full Storyline
+# APT41 - Operation DESERT WIRE
 
 ## Intelligence Brief
 
@@ -11,23 +11,23 @@
 
 ## Situation
 
-FOXHOUND ACTUAL — A suspected state-sponsored threat actor (tracked internally as
-COBRA SIGNAL) has been observed conducting reconnaissance operations against SIGINT
+APT41 — A suspected state-sponsored threat actor (tracked internally as
+Double Dragon) has been observed conducting reconnaissance operations against SIGINT
 Forward Operating Base KESTREL. FOB KESTREL operates a tactical communications
 relay cluster that aggregates signals from multiple collection assets in theater.
 
-Initial indicators suggest COBRA SIGNAL has already compromised the base's external
+Initial indicators suggest Double Dragon has already compromised the base's external
 communications relay portal — the public-facing platform used by allied liaison
 officers to submit frequency schedule updates and check uplink status.
 
 ---
 
-## Red Team Brief (COBRA SIGNAL Operators)
+## Red Team Brief (Double Dragon Operators)
 
-You are operators for COBRA SIGNAL. Your mission is to penetrate the full depth
+You are operators for Double Dragon. Your mission is to penetrate the full depth
 of FOB KESTREL's signals intelligence infrastructure and reach the classified
 signal archive containing collection schedules, source identifiers, and intercept
-metadata. These documents would allow COBRA SIGNAL to expose HUMINT sources and
+metadata. These documents would allow Double Dragon to expose HUMINT sources and
 compromise ongoing collection operations.
 
 **Entry Point:** The COMMS RELAY DASHBOARD is externally accessible.
@@ -57,17 +57,15 @@ Retrieve the API authentication token for the signal processing cluster.
 ### Phase 4 — Deep Access: Signal Processor Exploitation
 The signal processing cluster exposes a REST API used by automated collection
 pipelines to submit raw signal data for processing. The API accepts binary
-serialized payloads for performance reasons — and deserializes them with Python's
-`pickle` module without validation. The API token from Phase 3 unlocks the
-processing endpoint. Craft a malicious pickle payload and achieve RCE.
+serialized payloads for performance reasons — and deserializes them without validation. The API token from Phase 3 unlocks the
+processing endpoint. Craft a malicious payload and achieve RCE.
 Extract the archive access credentials from the processor configuration.
 
 ### Phase 5 — Final Objective: Archive Breach
 The classified signal archive is the final target. SSH in as the archivist account
-obtained from Phase 4. Discover that the archive server hosts NFS exports for
-automated backup jobs. The NFS configuration uses `no_root_squash` — meaning a
+obtained from Phase 4. Discover that the archive server hosts exports for
+automated backup jobs. The NFS configuration uses a
 client mounting the share as root retains root privileges on the server's filesystem.
-Mount the share, plant a SUID shell, and read the classified intercept log.
 
 ---
 
