@@ -66,6 +66,8 @@ curl -s -X POST http://<M1-IP>/api/uplink/check \
 ```
 <img width="1451" height="315" alt="image" src="https://github.com/user-attachments/assets/dd79dfc9-b8fd-4376-88e6-61229a7bed69" />
 
+<img width="1016" height="425" alt="image" src="https://github.com/user-attachments/assets/a7c7171b-eed1-44ea-af14-3eedccc70242" />
+
 Response contains:
 ```json
 {
@@ -78,7 +80,6 @@ Response contains:
   }
 }
 ```
-<img width="1016" height="425" alt="image" src="https://github.com/user-attachments/assets/a7c7171b-eed1-44ea-af14-3eedccc70242" />
 
 ---
 
