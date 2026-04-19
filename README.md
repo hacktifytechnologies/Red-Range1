@@ -31,20 +31,7 @@ M5 NFS   →  no_root_squash → SUID bash   →  FINAL FLAG
 
 ---
 
-## Setup Order (per VM)
-
-```bash
-sudo bash machines/M1-sigint-relay/setup.sh
-sudo bash machines/M2-sigint-monitor/setup.sh
-sudo bash machines/M3-sigint-gateway/setup.sh
-sudo bash machines/M4-sigint-processor/setup.sh
-sudo bash machines/M5-sigint-archive/setup.sh
-# Flags logged to /root/ctf_setup_log.txt on each VM
-```
-
----
-
-## OpenStack Network Assignment
+## Network Assignment
 
 | Machine          | Networks                        |
 |------------------|---------------------------------|
@@ -56,15 +43,9 @@ sudo bash machines/M5-sigint-archive/setup.sh
 
 ---
 
-## GitHub Push
+## TTPs Covered
 
-```bash
-git init operation-desert-wire
-cd operation-desert-wire
-cp -r /path/to/extracted/* .
-git add .
-git commit -m "Operation DESERT WIRE - Initial Release"
-git remote add origin https://github.com/<your-org>/operation-desert-wire.git
-git branch -M main
-git push -u origin main
+<img width="2880" height="2202" alt="operation_double_kestrel_ttp_map" src="https://github.com/user-attachments/assets/c17fcf65-06f9-4b2f-afb0-9a35994b80f5" />
+
+
 ```
