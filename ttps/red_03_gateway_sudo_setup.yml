@@ -1,4 +1,4 @@
-- name: 'DESERT WIRE: Setup M3 sigint-gateway sudo node Misconfiguration'
+- name: 'APT41 - DESERT WIRE: Setup M3 sigint-gateway sudo node Misconfiguration'
   id: dw03c4d5e6f7a8b9c0d1e2f3a4b5c6d7
   description: >-
     Configures M3 (sigint-gateway) as the pivot host between DMZ and private
