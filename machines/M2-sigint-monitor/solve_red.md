@@ -75,7 +75,8 @@ curl -s -X POST http://11.0.1.215:8080/api/diagnostic/ping \
 # Save as sigops_rsa and set permissions:
 chmod 600 sigops_rsa
 ```
-![Uploading image.png…]()
+<img width="619" height="674" alt="image" src="https://github.com/user-attachments/assets/cbfc59c2-751b-445d-b90f-e6250b935464" />
+
 
 ---
 
