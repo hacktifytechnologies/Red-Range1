@@ -1,4 +1,4 @@
-# Operation DESERT WIRE - SIGINT Cyber Range
+# APT41 - Operation DESERT WIRE
 
 **Classification:** UNCLASSIFIED // EXERCISE ONLY
 **Domain Theme:** Military Signals Intelligence Forward Operating Base
