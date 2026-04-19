@@ -9,7 +9,7 @@
     Runs on port 80 via authbind. Generates access logs in /var/log/desertrelay.log.
     Run this TTP on the M1 machine before the exercise begins.
   tactic: initial-access
-  technique_id: T1608.001
+  technique_id: T1190
   technique_name: 'Exploit Public-Facing Application'
   singleton: true
   repeatable: false
