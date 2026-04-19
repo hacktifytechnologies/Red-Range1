@@ -1,4 +1,4 @@
-- name: 'DESERT WIRE: Setup M2 sigint-monitor OS Command Injection Flask App'
+- name: 'APT41 - DESERT WIRE: Setup M2 sigint-monitor OS Command Injection Flask App'
   id: dw02b3c4d5e6f7a8b9c0d1e2f3a4b5c6
   description: >-
     Installs Python3/Flask and deploys the DESERT WIRE SIGINT Network Monitor
