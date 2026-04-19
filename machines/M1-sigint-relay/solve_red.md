@@ -78,8 +78,7 @@ Response contains:
   }
 }
 ```
-<img width="836" height="504" alt="image" src="https://github.com/user-attachments/assets/d26f5aff-8ccf-4224-be80-ad1c0bac5ef4" />
-
+<img width="1016" height="425" alt="image" src="https://github.com/user-attachments/assets/a7c7171b-eed1-44ea-af14-3eedccc70242" />
 
 ---
 
