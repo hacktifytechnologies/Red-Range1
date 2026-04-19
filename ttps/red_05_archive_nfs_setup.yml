@@ -1,4 +1,4 @@
-- name: 'DESERT WIRE: Setup M5 sigint-archive NFS no_root_squash'
+- name: 'APT41 - DESERT WIRE: Setup M5 sigint-archive NFS no_root_squash'
   id: dw05e6f7a8b9c0d1e2f3a4b5c6d7e8f9
   description: >-
     Configures M5 (sigint-archive) as the classified signal archive server.
