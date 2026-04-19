@@ -44,6 +44,7 @@ id       # uid=0(root)
 ```
 <img width="1036" height="228" alt="image" src="https://github.com/user-attachments/assets/287414f5-82aa-4cda-ad45-aadbc654d35b" />
 
+<img width="820" height="281" alt="image" src="https://github.com/user-attachments/assets/bc650cdc-6996-460e-89df-e4377b501baf" />
 
 ---
 
