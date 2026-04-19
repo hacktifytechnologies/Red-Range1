@@ -47,6 +47,7 @@ ls -la /mnt/archive/CLASSIFIED_FLAG.txt
 # As root on M4, you can read it:
 cat /mnt/archive/CLASSIFIED_FLAG.txt
 ```
+<img width="983" height="224" alt="image" src="https://github.com/user-attachments/assets/6f672865-0d59-4d21-80f2-a1564e48ea21" />
 
 ---
 
