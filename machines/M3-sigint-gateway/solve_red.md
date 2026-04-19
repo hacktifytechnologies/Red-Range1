@@ -14,6 +14,7 @@
 chmod 600 sigops_rsa
 ssh -i sigops_rsa sigops@<M3-DMZ-IP>
 ```
+<img width="1102" height="521" alt="image" src="https://github.com/user-attachments/assets/2ab4c82a-08c2-4714-8d1b-ebdb6d6bb2c8" />
 
 ---
 
@@ -41,6 +42,8 @@ sudo node /tmp/shell.js
 whoami   # root
 id       # uid=0(root)
 ```
+<img width="1036" height="228" alt="image" src="https://github.com/user-attachments/assets/287414f5-82aa-4cda-ad45-aadbc654d35b" />
+
 
 ---
 
