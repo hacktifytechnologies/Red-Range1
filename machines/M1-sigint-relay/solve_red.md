@@ -11,6 +11,8 @@
 
 <img width="1468" height="869" alt="image" src="https://github.com/user-attachments/assets/ac3bc94b-e625-4556-b94a-4e982b6f284b" />
 
+<img width="1470" height="776" alt="image" src="https://github.com/user-attachments/assets/5a6e79a0-6fd1-4690-ad0a-5b1f557a69ac" />
+
 
 ```bash
 curl -s http://<M1-FLOAT-IP>/ | grep -i "uplink\|api\|check"
