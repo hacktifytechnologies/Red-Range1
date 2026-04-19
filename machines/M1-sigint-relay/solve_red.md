@@ -35,6 +35,7 @@ curl -s -X POST http://<M1-IP>/api/uplink/check \
 <img width="1463" height="265" alt="image" src="https://github.com/user-attachments/assets/cec563e8-2897-49e8-b4d4-3779cc3d5c8d" />
 <img width="1470" height="627" alt="image" src="https://github.com/user-attachments/assets/6c8cabb6-d14a-4189-a91e-18bac11c70f0" />
 
+<img width="1468" height="752" alt="image" src="https://github.com/user-attachments/assets/dd411f20-98b5-4cd2-8e2b-7f60ee3c8ad0" />
 
 
 The filter only blocks `localhost` and `127.0.0.1` — NOT RFC1918 DMZ ranges.
