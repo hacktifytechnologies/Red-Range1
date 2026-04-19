@@ -1,4 +1,4 @@
-- name: 'DESERT WIRE: Setup M1 sigint-relay SSRF Vulnerable Node.js App'
+- name: 'APT41 - DESERT WIRE: Setup M1 sigint-relay SSRF Vulnerable Node.js App'
   id: dw01a2b3c4d5e6f7a8b9c0d1e2f3a4b5
   description: >-
     Installs Node.js and deploys the DESERT WIRE SIGINT Comms Relay Dashboard
