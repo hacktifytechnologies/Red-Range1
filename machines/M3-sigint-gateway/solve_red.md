@@ -5,6 +5,7 @@
 **Entry:** SSH with `sigops_rsa` key extracted from M2
 
 ---
+<img width="1460" height="797" alt="image" src="https://github.com/user-attachments/assets/62c5fe91-5a09-4be4-9650-92dc50e24c05" />
 
 ## Step 1 — SSH Login
 
