@@ -1,4 +1,4 @@
-- name: 'DESERT WIRE: Setup M4 sigint-processor Pickle Deserialization RCE'
+- name: 'APT41 - DESERT WIRE: Setup M4 sigint-processor Pickle Deserialization RCE'
   id: dw04d5e6f7a8b9c0d1e2f3a4b5c6d7e8
   description: >-
     Deploys the DESERT WIRE Signal Processing API on M4 (sigint-processor, port 5000).
