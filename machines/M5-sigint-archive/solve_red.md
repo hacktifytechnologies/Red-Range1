@@ -24,6 +24,7 @@ showmount -e <M5-IP>
 # Export list for <M5-IP>:
 # /opt/sigint/classified-archive *
 ```
+<img width="1163" height="752" alt="image" src="https://github.com/user-attachments/assets/91428885-ba6e-483a-8020-09cc08c42138" />
 
 ---
 
