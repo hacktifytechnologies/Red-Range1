@@ -8,9 +8,9 @@
     bootstrap credentials from the internal /api/internal/status endpoint.
     Runs on port 80 via authbind. Generates access logs in /var/log/desertrelay.log.
     Run this TTP on the M1 machine before the exercise begins.
-  tactic: resource-development
+  tactic: initial-access
   technique_id: T1608.001
-  technique_name: 'Stage Capabilities: Upload Malware'
+  technique_name: 'Exploit Public-Facing Application'
   singleton: true
   repeatable: false
   delete_payload: false
